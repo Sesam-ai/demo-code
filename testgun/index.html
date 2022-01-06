@@ -1,0 +1,21 @@
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/lib/radix.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/lib/radisk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/lib/store.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/lib/rindexed.js"></script>
+
+<script>
+    // window.G = G;
+    let opt = {};
+    opt.store = RindexedDB(opt);
+    opt.localStorage = false;
+    opt.peers = ['http://localhost:8080/gun'];
+
+    let gun = Gun(opt); // <-- my gun instance on client
+
+    //gun.get('servertest').once(console.log) // <-- it prints "undefined" even though I put data here by server!
+
+    gun.get('mark500').on((data, key) => {
+        console.log("realtime updates 1:", data);
+        });
+</script>
